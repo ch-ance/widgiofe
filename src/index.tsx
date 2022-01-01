@@ -4,6 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
+import "/node_modules/react-grid-layout/css/styles.css";
+import "/node_modules/react-resizable/css/styles.css";
 
 ReactDOM.render(
   <React.StrictMode>
