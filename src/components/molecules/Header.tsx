@@ -1,20 +1,21 @@
 /** @jsxImportSource @emotion/react */
-import PageHeader from "@atlaskit/page-header";
 
 import { css } from "@emotion/react";
 
 const defaultHeaderStyles = css({
+  height: 80,
   borderBottom: "1px solid #aaa",
+  h1: {
+    marginTop: 0,
+  },
 });
 
-interface HeaderProps {
-  title: string;
-}
+interface HeaderProps {}
 
-const Header = ({ title }: HeaderProps) => {
+const Header = (props: HeaderProps) => {
   return (
     <header css={defaultHeaderStyles}>
-      <PageHeader>{title}</PageHeader>
+      <h1>Widgy</h1>
     </header>
   );
 };
