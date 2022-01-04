@@ -2,7 +2,7 @@
 
 import { css } from "@emotion/react";
 import Footer from "../components/atoms/Footer";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/organisms/LoginForm";
 import Header from "../components/molecules/Header";
 import { colors } from "../theme/constants";
 

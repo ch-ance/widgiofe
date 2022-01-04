@@ -2,8 +2,8 @@
 
 import { css } from "@emotion/react";
 import { lazy, Suspense, useMemo } from "react";
-import WidgetErrorBoundary from "../widgets/WidgetErrorBoundary";
-import { WidgetMetadata } from "./types";
+import WidgetErrorBoundary from "./WidgetErrorBoundary";
+import { WidgetMetadata } from "../types";
 
 const WidgetStyle = css({
   width: "100%",

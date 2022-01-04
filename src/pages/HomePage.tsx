@@ -3,8 +3,8 @@
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import Header from "../components/molecules/Header";
-import { WidgetMetadata } from "../components/templates/types";
-import WidgetsContainer from "../components/templates/WidgetsContainer";
+import { WidgetMetadata } from "../components/types";
+import WidgetsContainer from "../components/widgets/WidgetsLayout";
 import { colors } from "../theme/constants";
 
 const PageStyle = css({
