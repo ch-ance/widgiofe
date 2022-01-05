@@ -13,21 +13,20 @@ const WidgetStyle = css({
   borderRadius: 5,
 });
 
-const Widget = (props: WidgetMetadata) => {
+const RenderWidget = (props: WidgetMetadata) => {
   const Component = useMemo(
     () => lazy(() => import(`../widgets/${props.fileName}/${props.fileName}`)),
     []
   );
 
   return (
-    <article css={WidgetStyle}>
+    <div css={WidgetStyle}>
       <Suspense fallback={<div>loading...</div>}>
         <WidgetErrorBoundary>
           <Component />
         </WidgetErrorBoundary>
       </Suspense>
-    </article>
+    </div>
   );
 };
-
-export default Widget;
+export default RenderWidget;

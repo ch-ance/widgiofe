@@ -2,19 +2,16 @@
 
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
-import Header from "./Header";
 import { WidgetProvider } from "./context";
 
-const TalkFreeStyles = css({
+const WidgyDashboardStyles = css({
   height: "100%",
   width: "100%",
 });
 
-const Talkfree = () => {
+const WidgyDashboard = () => {
   // get data here and put it in Context
-  const [widgetData, setWidgetData] = useState({
-    name: "Talkfree",
-  });
+  const [widgetData, setWidgetData] = useState({});
 
   useEffect(() => {
     // get stuff
@@ -22,12 +19,12 @@ const Talkfree = () => {
   }, []);
 
   return (
-    <div css={TalkFreeStyles}>
+    <div css={WidgyDashboardStyles}>
       <WidgetProvider widgetData={widgetData}>
-        <Header />
+        <h2>Widgy Dashboard</h2>
       </WidgetProvider>
     </div>
   );
 };
 
-export default Talkfree;
+export default WidgyDashboard;
