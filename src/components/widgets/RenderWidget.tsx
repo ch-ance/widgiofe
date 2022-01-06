@@ -13,6 +13,7 @@ const WidgetStyle = css({
   borderRadius: 5,
 });
 
+// set some setTimeouts to see the animation phases
 const RenderWidget = (props: WidgetMetadata) => {
   const Component = useMemo(
     () => lazy(() => import(`../widgets/${props.fileName}/${props.fileName}`)),

@@ -19,6 +19,9 @@ const PageStyle = css({
 const headerStyles: CSSProperties = {
   height: 80,
   position: "fixed",
+  display: "flex",
+  alignItems: "center",
+  paddingLeft: 20,
   backgroundColor: "blue",
 };
 
