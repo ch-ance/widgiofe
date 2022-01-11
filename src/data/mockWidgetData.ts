@@ -1,12 +1,12 @@
-import { WidgetMetadata } from "./components/types";
+import { WidgetMetadata } from "../widgets/types";
 
 const widgetData: WidgetMetadata[] = [
   {
-    fileName: "WidgyDashboard",
-    // start with a width of 2
+    fileName: "SocialDashboard",
     sizeOptions: {
       w: 2,
-      h: 40,
+      h: 80,
+      maxH: 80,
     },
   },
   {

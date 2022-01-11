@@ -1,21 +1,10 @@
-/** @jsxImportSource @emotion/react */
-
-import { css } from "@emotion/react";
-import Footer from "../components/atoms/Footer";
-import LoginForm from "../components/organisms/LoginForm";
-import Header from "../components/molecules/Header";
-import { colors } from "../theme/constants";
-
-const PageStyle = css({
-  backgroundColor: colors["eerie-black"],
-  color: colors.text,
-  height: "100vh",
-  maxHeight: "100vh",
-});
+import Footer from "./components/Footer";
+import LoginForm from "./components/LoginForm";
+import Header from "./components/Header";
 
 const AuthPage = () => {
   return (
-    <div css={PageStyle}>
+    <div>
       <Header />
       <main>
         <LoginForm />

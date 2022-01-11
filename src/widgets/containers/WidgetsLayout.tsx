@@ -8,11 +8,12 @@
  *  Grid Units: h = props.rowHeight, w = (props.width / props.cols)
  *  https://stackoverflow.com/questions/53390494/react-grid-layout-x-y-w-h
  */
-
 import { useEffect, useState } from "react";
 import { Responsive, WidthProvider, Layout } from "react-grid-layout";
 import { SizeOptions, WidgetMetadata } from "../types";
-import Widget from "./RenderWidget";
+import WidgetLoader from "./WidgetLoader";
+import "/node_modules/react-grid-layout/css/styles.css";
+import "/node_modules/react-resizable/css/styles.css";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -77,7 +78,6 @@ const WidgetsContainer = ({ widgets }: WidgetsContainerProps) => {
   };
 
   /**
-   *
    * @param sizeOptions width/height constraints for a partciular Widget, as well as its default size
    * @param index current index of ReactGridLayout children array
    * @param breakpoint the BreakpointKey we are creating a layout for
@@ -86,7 +86,7 @@ const WidgetsContainer = ({ widgets }: WidgetsContainerProps) => {
   const getLayout = (
     sizeOptions: SizeOptions,
     index: number,
-    breakpoint: BreakpointKey // so we can get extra responsive
+    breakpoint: BreakpointKey
   ): Layout => {
     let { minW, w, maxW, minH, h, maxH } = sizeOptions;
 
@@ -95,7 +95,7 @@ const WidgetsContainer = ({ widgets }: WidgetsContainerProps) => {
     maxW = clamp(maxW || 12, 1, 12);
     w = clamp(w || 4, minW, maxW);
     minH = clamp(minH || 10, 10, 40);
-    maxH = clamp(maxH || 40, 10, 40);
+    maxH = clamp(maxH || 40, 10, 45);
     h = clamp(h || 20, minH, maxH);
 
     // keep a running total of the width/height used so that we can set the coordinates of the next elements.
@@ -127,7 +127,7 @@ const WidgetsContainer = ({ widgets }: WidgetsContainerProps) => {
     >
       {widgets.map(({ fileName, sizeOptions }, index) => (
         <div key={index.toString()}>
-          <Widget fileName={fileName} sizeOptions={sizeOptions} />
+          <WidgetLoader fileName={fileName} sizeOptions={sizeOptions} />
           {/* sizing can't be set inside of the child. sizeOptions are only passed as a prop so that the
           widget knows what breakpoints it can ignore */}
         </div>
@@ -135,6 +135,9 @@ const WidgetsContainer = ({ widgets }: WidgetsContainerProps) => {
     </ResponsiveGridLayout>
   );
 };
+
+export default WidgetsContainer;
+
 /**
  * Take a value and ensure that it is within a min/max range.
  * Too low? Return the min value. Too high, return the max.
@@ -147,79 +150,3 @@ const WidgetsContainer = ({ widgets }: WidgetsContainerProps) => {
 function clamp(val: number, min: number, max: number) {
   return val > max ? max : val < min ? min : val;
 }
-
-// const cols = {
-//   lg: 12,
-//   md: 10,
-//   sm: 6,
-//   xs: 2,
-//   xxs: 0,
-// };
-
-// const breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 };
-
-// interface WidgetsContainerProps {
-//   widgets: WidgetMetadata[];
-// }
-
-// const defaultWidth = 1200; // guess the default width. This is just so we don't get weird animations when the layout is first generated. We can try setting it to different values
-// const rowHeight = 12;
-
-// enum BreakpointSize {
-//   lg = "lg",
-//   md = "md",
-//   sm = "sm",
-//   xs = "xs",
-//   xxs = "xxs",
-// }
-
-// function generateLayouts(): Layouts {
-//   let breakpointLayouts: Layouts = {
-//     lg: [],
-//     md: [],
-//     sm: [],
-//     xs: [],
-//     xxs: [],
-//   };
-//   Object.keys(breakpoints).forEach((size, i, bpArr) => {
-//     breakpointLayouts[size as BreakpointSize] = getLayouts(
-//       size as BreakpointSize
-//     );
-//   });
-//   return breakpointLayouts;
-// }
-
-// const calcWidth = (size: BreakpointSize, desktopPreference: number) => {
-//   // const gridUnit = containerWidth / cols[size];
-//   const scale = cols[size] / cols["lg"]; // scale the desktop preference based on the breakpoint
-//   const prefWidth = desktopPreference * scale;
-//   return prefWidth;
-// };
-// const calcHeight = (size: BreakpointSize, desktopPreference: number) => {
-//   // const gridUnit = rowHeight
-//   const scale = cols[size] / cols["lg"]; // scale the desktop preference based on the breakpoint
-//   const prefHeight = desktopPreference * scale;
-//   return prefHeight;
-// };
-
-// const getLayouts = (size: BreakpointSize): Layout[] => {
-//   let layouts = [];
-//   for (let i = 0; i < widgets.length; i++) {
-//     const prefWidth = widgets[i].preferredSize?.width || cols[size] / 3;
-//     const prefHeight = widgets[i].preferredSize?.height || 1;
-
-//     const w = calcWidth(size as BreakpointSize, prefWidth);
-//     const h = calcHeight(size as BreakpointSize, prefHeight);
-//     const layout = {
-//       x: (i * w) % cols[size as BreakpointSize],
-//       y: Math.floor(i / 6),
-//       w: w,
-//       h: h,
-//       i: i.toString(),
-//     };
-//     layouts.push(layout);
-//   }
-//   return layouts;
-// };
-
-export default WidgetsContainer;

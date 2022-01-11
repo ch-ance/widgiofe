@@ -1,8 +1,6 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { useState } from "react";
 import httpPost from "../../data/httpPost";
-import LabeledInput from "../atoms/LabeledInput";
+import LabeledInput from "./LabeledInput";
 
 const LoginForm = () => {
   const [formState, setFormState] = useState({

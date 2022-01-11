@@ -1,4 +1,5 @@
 import { Component } from "react";
+import WidgetContainer from "./WidgetContainer";
 
 class WidgetErrorBoundary extends Component {
   state: any;
@@ -19,7 +20,11 @@ class WidgetErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return <p>component crashed or never loaded</p>;
+      return (
+        <WidgetContainer>
+          <p>Widget crashed unexpectedly</p>
+        </WidgetContainer>
+      );
     }
 
     return this.props.children;
